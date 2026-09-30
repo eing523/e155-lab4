@@ -86,10 +86,10 @@ Sections by address:
                                                                 Code  RX  stm32l432xx_Vectors.o
   0800018C-080001E7  SystemInit                         92   4  Code  RX  system_stm32l4xx.o
   080001E8-08000217  MSIRangeTable                      48   4  Cnst  RO  system_stm32l4xx.o
-  08000218-080002E7  main                              208   4  Code  RX  main.o
-  080002E8-0800046F  notes1                            392   4  Cnst  RO  main.o
-  08000470-080004CF  runPitch                           96   4  Code  RX  STM32L432KC_TIM6.o
-  080004D0-08000527  duration                           88   4  Code  RX  STM32L432KC_TIM7.o
+  08000218-08000277  runPitch                           96   4  Code  RX  STM32L432KC_TIM6.o
+  08000278-080002CF  duration                           88   4  Code  RX  STM32L432KC_TIM7.o
+  080002D0-0800039F  main                              208   4  Code  RX  main.o
+  080003A0-08000527  notes1                            392   4  Cnst  RO  main.o
   08000528-0800053B  _start                             20   4  Code  RX  SEGGER_THUMB_Startup.o
   0800053C-08000563  HardFault_Handler                  40   4  Code  RX  STM32L4xx_Startup.o
   08000564-080006D5  SystemCoreClockUpdate             370   4  Code  RX  system_stm32l4xx.o
@@ -269,14 +269,14 @@ Function symbols by name:
   __startup_complete         0x08000533                  4  Code  Gb  SEGGER_THUMB_Startup.o
   _start                     0x08000529          14      4  Code  Gb  SEGGER_THUMB_Startup.o
   configureFlash             0x080006D9          26      4  Code  Gb  STM32L432KC_FLASH.o
-  duration                   0x080004D1          88      4  Code  Gb  STM32L432KC_TIM7.o
+  duration                   0x08000279          88      4  Code  Gb  STM32L432KC_TIM7.o
   exit                       0x08000537           2      4  Code  Gb  SEGGER_THUMB_Startup.o
-  main                       0x08000219         208      4  Code  Gb  main.o
+  main                       0x080002D1         208      4  Code  Gb  main.o
   pinMode                    0x080006F5         162      4  Code  Gb  STM32L432KC_GPIO.o
   pitch                      0x080007B9          86      4  Code  Gb  STM32L432KC_TIM6.o
   reset_handler              0x080008D5                  2  Code  Gb  STM32L4xx_Startup.o
   runDuration                0x08000811          70      4  Code  Gb  STM32L432KC_TIM7.o
-  runPitch                   0x08000471          96      4  Code  Gb  STM32L432KC_TIM6.o
+  runPitch                   0x08000219          96      4  Code  Gb  STM32L432KC_TIM6.o
   togglePin                  0x08000799          30      4  Code  Gb  STM32L432KC_GPIO.o
 
 Function symbols by address:
@@ -284,9 +284,9 @@ Function symbols by address:
      Address  Symbol name                      Size  Align  Type  Bd  Object File
   ----------  -------------------------  ----------  -----  ----  --  -----------
   0x0800018D  SystemInit                         92      4  Code  Gb  system_stm32l4xx.o
-  0x08000219  main                              208      4  Code  Gb  main.o
-  0x08000471  runPitch                           96      4  Code  Gb  STM32L432KC_TIM6.o
-  0x080004D1  duration                           88      4  Code  Gb  STM32L432KC_TIM7.o
+  0x08000219  runPitch                           96      4  Code  Gb  STM32L432KC_TIM6.o
+  0x08000279  duration                           88      4  Code  Gb  STM32L432KC_TIM7.o
+  0x080002D1  main                              208      4  Code  Gb  main.o
   0x08000529  _start                             14      4  Code  Gb  SEGGER_THUMB_Startup.o
   0x08000533  __startup_complete                         4  Code  Gb  SEGGER_THUMB_Startup.o
   0x08000533  __SEGGER_init_done                         4  Code  Gb  SEGGER_THUMB_Startup.o
@@ -489,14 +489,14 @@ Read-only data symbols by name:
   MSIRangeTable              0x080001E8          48      4  Cnst  Gb  system_stm32l4xx.o
   __SEGGER_init_data__       0x0800093C         [4]      4  Cnst  Lc  [ Linker created ]
   __SEGGER_init_table__      0x08000924        [24]      4  Cnst  Lc  [ Linker created ]
-  notes1                     0x080002E8         392      4  Cnst  Gb  main.o
+  notes1                     0x080003A0         392      4  Cnst  Gb  main.o
 
 Read-only data symbols by address:
 
      Address  Symbol name                      Size  Align  Type  Bd  Object File
   ----------  -------------------------  ----------  -----  ----  --  -----------
   0x080001E8  MSIRangeTable                      48      4  Cnst  Gb  system_stm32l4xx.o
-  0x080002E8  notes1                            392      4  Cnst  Gb  main.o
+  0x080003A0  notes1                            392      4  Cnst  Gb  main.o
   0x080008F0  AHBPrescTable                      16         Cnst  Gb  system_stm32l4xx.o
   0x08000924  __SEGGER_init_table__            [24]      4  Cnst  Lc  [ Linker created ]
   0x0800093C  __SEGGER_init_data__              [4]      4  Cnst  Lc  [ Linker created ]
