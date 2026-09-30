@@ -1,0 +1,30 @@
+// Nucleo-L432KC Blink demo
+// Josh Brake
+// jbrake@hmc.edu
+// 9/21/22
+
+#include <stdint.h>
+
+// Base addresses for GPIO ports
+2 #define GPIOA_BASE (0x48000000U)
+
+
+#define GPIOB_BASE_ADR (0x48000400UL)
+#define RCC_BASE_ADR (0x40021000UL)
+#define RCC_AHB2ENR ((uint32_t *) (RCC_BASE_ADR + 0x4C))
+#define GPIOB_MODER ((uint32_t *) (GPIOB_BASE_ADR + 0x00))
+#define GPIOB_ODR ((uint32_t *) (GPIOB_BASE_ADR + 0x14))
+#define DUMMY_DELAY 100000
+
+
+// code below for driver file
+
+typedef struct
+6 {
+7 __IO uint32_t CR; /*!< RCC clock control register,
+8 __IO uint32_t ICSCR; /*!< RCC internal clock sources calibration register,
+9 __IO uint32_t CFGR; /*!< RCC clock configuration register,
+10 __IO uint32_t PLLCFGR; /*!< RCC system PLL configuration register,
+11 ...
+12 __IO uint32_t CRRCR; /*!< RCC clock recovery RC register,
+13 } RCC_TypeDef;
