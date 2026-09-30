@@ -11,10 +11,11 @@
 #include "STM32L432KC_TIM7.h"
 #include "STM32L432KC_FLASH.h"
 
-//#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // Define macros for constants
-#define LED_PIN 3 // LM386 - low-voltage audio power amplifier
+#define LED_PIN 3
 
 // Fur Elise - Pitch in Hz, duration in ms
 const int notes[][2] = {
@@ -128,9 +129,62 @@ const int notes[][2] = {
 {440,	500},
 {  0,	0}};
 
+// New song, Zelda's lullaby - Pitch in Hz, duration in ms
+const int notes1[][2] = { 
+
+{330, 250*3}, 
+{392, 125*3},
+{294, 250*3}, 
+{262, 63*3}, 
+{294, 63*3}, 
+{330, 250*3}, 
+{392, 125*3}, 
+{294, 313*3}, 
+{330, 250*3}, 
+{392, 125*3}, 
+{587, 250*3}, 
+{523, 125*3}, 
+{392, 250*3}, 
+{349, 63*3}, 
+{330, 63*3}, 
+{294, 313*3}, 
+{330, 250*3}, 
+{392, 125*3}, 
+{294, 250*3}, 
+{262, 63*3}, 
+{294, 63*3}, 
+{330, 250*3}, 
+{392, 125*3}, 
+{294, 313*3}, 
+{330, 250*3}, 
+{392, 125*3}, 
+{587, 250*3}, 
+{523, 125*3}, 
+{392, 250*3}, 
+{349, 63*3}, 
+{330, 63*3}, 
+{349, 63*3}, 
+{330, 63*3}, 
+{262, 250*3}, 
+{349, 250*3}, 
+{330, 63*3}, 
+{294, 63*3}, 
+{330, 63*3}, 
+{294, 63*3}, 
+{220, 250*3},
+{392, 250*3},
+{349, 63*3}, 
+{330, 63*3}, 
+{349, 63*3}, 
+{330, 63*3}, 
+{262, 125*3}, 
+{349, 125*3},
+{523, 313*3},
+{0, 0}};
+
+
 int main(void) {
     configureFlash();
-    configureClock();
 
     // Turn on clock to GPIOB
     RCC->AHB2ENR |= (1 << 1);
@@ -141,28 +195,24 @@ int main(void) {
     // Set LED_PIN as output
     pinMode(LED_PIN, GPIO_OUTPUT);
 
-    // Blink LED
-    for(int i = 0; i < (sizeof(notes)/sizeof(notes[0])); i++) {
+   for(int i = 0; i < (sizeof(notes1)/sizeof(notes1[0])); i++) {
         // duration the note lasts
-        runDuration(notes[i][1]);
-        // while the duration is running, do this
+        runDuration(notes1[i][1]);
         while(!((TIM7->SR >> 0) & 1)){
-            // pitch is on while duration running
-            runPitch(notes[i][0]);
-            // if there's no more duration, flag update
-            if (notes[i][0] == 0){
-                TIM6->SR &= ~(1<<0);
+          // pitch is on
+          runPitch(notes1[i][0]);
+          if (notes1[i][0] == 0){
+            TIM6->SR &= ~(1 << 0); 
+          }
+          else {  
+            while(!((TIM6->SR >> 0) & 1)){}         
+              // note is running
+              togglePin(LED_PIN);
+              TIM6->SR &= ~(1 << 0);         
             }
-            else{
-                // while the pitch is on, do this
-                while(!((TIM6->SR >> 0) & 1)){
-                    // note is running
-                    togglePin(LED_PIN);
-                    TIM6->SR &= ~(1<<0);
-                }
-            }
-            TIM6->SR &= ~(1 << 0);
-        }
+          }
+            
+        TIM7->SR &= ~(1 << 0);
     }
     return 0;
 }

@@ -14,7 +14,7 @@ void configurePLL(void) {
     RCC->CR &= ~(1<<24); // 24th bit goes to 0
 
     // TODO: Wait till PLL is unlocked (e.g., off)
-    while ((RCC->CR >> 25 & 1) != 0);
+    while (RCC->CR >> 25 & 1);
 
     // Load configuration
     // TODO: Set PLL SRC to MSI
@@ -23,7 +23,7 @@ void configurePLL(void) {
 
     // TODO: Set PLLN
     RCC->PLLCFGR &= ~(0b1111111 << 8); // clear bits
-    RCC->PLLCFGR |= (0b0000100 << 8); // Set PLLN to 4 MHz
+    RCC->PLLCFGR |= (0b1010000 << 8); // Set PLLN to 80 MHz
 
     // TODO: Set PLLM
     RCC->PLLCFGR &= ~(0b111 << 4); // set M = 0b000
@@ -39,7 +39,7 @@ void configurePLL(void) {
     RCC->CR |= (1<<24); // Enable PLL
     
     // TODO: Wait until PLL is locked
-    while ((RCC->CR >> 25 & 1) != 1);
+    while (!((RCC->CR >> 25) & 1));
     
 }
 

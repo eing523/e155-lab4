@@ -5,6 +5,7 @@
 
 #include "STM32L432KC_TIM6.h"
 #include "STM32L432KC_RCC.h"
+#include <stdint.h>
 
 void pitch(void) {
   // turn on timer 6 pg. 222
@@ -27,14 +28,15 @@ void pitch(void) {
 }
 
 void runPitch(int f_note){
+  
+  uint32_t counter = 0;
 
-  if (f_note == 0){
-    // stops the timer when counter disabled
-    TIM6->CR1 &= ~(1<<0);
+  if (f_note != 0){
+    counter = CK_INT / (2 * f_note);
   }
-  else{
+  
     // set ARR for the note frequency
-    TIM6->ARR = (CK_INT / (2*f_note)) - 1; // equation from calcs. PSC = 0.
+    TIM6->ARR = counter - 1; // equation from calcs. PSC = 0.
     
     // update generation to reinitialize counter + update registers
     TIM6->EGR |= (1<<0);
@@ -45,7 +47,6 @@ void runPitch(int f_note){
     // restart timer and enable counter
     TIM6->CR1 |= (1 << 0);
  
-  }
 
 }
 

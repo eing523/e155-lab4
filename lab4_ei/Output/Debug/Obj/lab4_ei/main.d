@@ -9,4 +9,6 @@ Output/Debug/Obj/lab4_ei/main.o: \
   C:\Users\eing\Documents\SEGGER\ Embedded\ Studio\ Projects\lab4_ei\STM32L432KC_GPIO.h \
   C:\Users\eing\Documents\SEGGER\ Embedded\ Studio\ Projects\lab4_ei\STM32L432KC_TIM6.h \
   C:\Users\eing\Documents\SEGGER\ Embedded\ Studio\ Projects\lab4_ei\STM32L432KC_TIM7.h \
-  C:\Users\eing\Documents\SEGGER\ Embedded\ Studio\ Projects\lab4_ei\STM32L432KC_FLASH.h
+  C:\Users\eing\Documents\SEGGER\ Embedded\ Studio\ Projects\lab4_ei\STM32L432KC_FLASH.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ 8.28a\include\stdio.h \
+  C:\Program\ Files\SEGGER\SEGGER\ Embedded\ Studio\ 8.28a\include\stdlib.h

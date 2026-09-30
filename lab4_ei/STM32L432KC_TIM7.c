@@ -10,8 +10,8 @@ void duration(void) {
   // turn on timer 7 p. 222
   RCC->APB1ENR1 |= (1 << 5); 
 
-  // set prescaler - 0 means clk input unchanged
-  TIM7->PSC = 0;
+  // set prescaler
+  TIM7->PSC = 3999; // turning 4 MHz into 1 kHz (dividing by 4000-1)
 
   // enable counter feature
   TIM7->CR1 |= (1<<0);
@@ -28,7 +28,7 @@ void duration(void) {
 
 void runDuration(int duration){
   // set ARR for note duration. -1 to account for the counting start at 0. we use duration here because the duration we are inputting is already the max val. 
-  TIM7->ARR = (duration*100000) - 1; // multiply by 100,000 to convert 1/4MHz to an integer number of ms
+  TIM7->ARR = duration - 1;
 
   // update generation to reinitialize counter + update registers
   TIM7->EGR |= (1<<0);
